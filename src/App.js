@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 
 function App() {
 
@@ -8,10 +8,10 @@ function App() {
 
 
   //--------------------------------------------------------------------------
-  function handleAdd() {
-    setTech([...tech, newTech])
-    setNewTech('');
-  }
+  // function handleAdd() {
+  //   setTech([...tech, newTech])
+  //   setNewTech('');
+  // }
   //--------------------------------------------------------------------------
 
   useEffect(() => {
@@ -32,6 +32,15 @@ function App() {
   /* UseMemo é usado quando quero que uma variável altere quando apenas UMA informação é alterada, como a tech por exemplo */
 
   //--------------------------------------------------------------------------
+
+  /*O useCallback é como o useMemo, mas ele retorna uma function... podemos trocar pela funtion handleAdd, para gastar menos processamento */
+  const handleAdd = useCallback(() => {
+    setTech([...tech, newTech])
+    setNewTech('');
+  }, [tech, newTech])
+
+  //--------------------------------------------------------------------------
+
 
 
 
