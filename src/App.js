@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
 function App() {
 
@@ -28,9 +28,10 @@ function App() {
 
   //--------------------------------------------------------------------------
 
+  const techSize = useMemo(() => tech.length, [tech]);
+  /* UseMemo é usado quando quero que uma variável altere quando apenas UMA informação é alterada, como a tech por exemplo */
 
-
-
+  //--------------------------------------------------------------------------
 
 
 
@@ -43,6 +44,9 @@ function App() {
           <li key={t}>{t}</li>
         ))}
       </ul>
+
+      <strong>Você tem {techSize} tecnologias </strong> <br />
+
       <input value={newTech} onChange={e => setNewTech(e.target.value)}></input>
       <button type="button" onClick={handleAdd}>Adicionar</button>
 
